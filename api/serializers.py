@@ -1,6 +1,6 @@
 from dataclasses import fields
 from rest_framework import serializers
-from .models import Place,User
+from .models import Place,User,Trending
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken,TokenError
 
@@ -32,4 +32,10 @@ class PlaceSerializer(serializers.ModelSerializer):
     place_image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
     class Meta:
         model=Place
+        fields='__all__'
+
+class TrendingSerializer(serializers.ModelSerializer):
+    place_image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
+    class Meta:
+        model=Trending
         fields='__all__'

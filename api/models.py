@@ -57,3 +57,13 @@ class Place(models.Model):
 
     def __str__(self):
         return (self.place_name)
+
+class Trending(models.Model):
+    place_name=models.CharField(max_length=100)
+    place_image=models.ImageField(upload_to='trending_images',blank=True,null=True)
+    state=models.CharField(max_length=100)
+    country=models.CharField(max_length=100)
+    photographer_name=models.CharField(max_length=100)
+
+    def __str__(self):
+        return(self.place_name)
