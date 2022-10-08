@@ -1,6 +1,5 @@
 from distutils.command.upload import upload
 from email.policy import default
-from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import (AbstractBaseUser,BaseUserManager,PermissionsMixin)
 
@@ -22,7 +21,6 @@ class UserManager(BaseUserManager):
         if password is None:
             raise TypeError("Password should not be none")
         
-        # user=self.create_user(username,email,password)
         user=self.create_user(username,email,password)
         user.is_superuser=True
         user.is_staff=True
@@ -68,3 +66,11 @@ class Trending(models.Model):
     def __str__(self):
         return(self.place_name)
 
+class Stay(models.Model):
+    place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
+    stay_name=models.CharField(max_length=100)
+    description=models.CharField(max_length=200)
+    stay_image=models.ImageField(upload_to='stay_images',blank=True,null=True)
+
+    def __str__(self):
+        return(self.stay_name)
