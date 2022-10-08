@@ -67,3 +67,12 @@ class Trending(models.Model):
 
     def __str__(self):
         return(self.place_name)
+
+class Stay(models.Model):
+    place_name=models.ForeignKey(place)
+    stay_name=models.CharField(max_length=100)
+    description=models.CharField(max_length=100)
+    image=models.ImageField(upload_to=      ,blank=     ,null=      )
+    
+    def __str__(self):
+        return(self.stay_name)
