@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics,mixins,viewsets,status
-from .models import Place,User,Trending
-from .serializers import PlaceSerializer,UserSerializer,RegisterSerializer,TrendingSerializer
+from .models import (Place,User,Trending,Stay)
+from .serializers import (PlaceSerializer,UserSerializer,RegisterSerializer,TrendingSerializer,StaySerializer)
 from rest_framework_simplejwt.tokens import RefreshToken,AccessToken
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
@@ -18,6 +18,10 @@ class RegisterView(viewsets.GenericViewSet,mixins.CreateModelMixin):
 class TrendingView(viewsets.GenericViewSet,mixins.ListModelMixin):
     serializer_class=TrendingSerializer
     queryset=Trending.objects.all()
+
+class StayView(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.RetrieveModelMixin):
+    serializer_class=StaySerializer
+    queryset=Stay.objects.all()
     
 class BlacklistTokenView(APIView):
     permission_classes=[IsAuthenticated]
