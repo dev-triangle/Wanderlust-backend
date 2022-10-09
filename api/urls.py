@@ -3,7 +3,7 @@ from django.urls import path,include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from .views import (BlacklistTokenView,LoggedInUserView,RegisterView,TrendingView,PlaceViewSet,
-                    StayView,UserDetailViewset,HotelViewset)
+                    StayView,UserDetailViewset,HotelViewset,UserViewset)
 router=DefaultRouter()
 router.register('places',PlaceViewSet, basename='places')
 router.register('register',RegisterView,basename='register')
@@ -11,6 +11,7 @@ router.register('trending',TrendingView,basename='trending')
 router.register('stays',StayView,basename='stays')
 router.register('user-detail',UserDetailViewset,basename='user-detail')
 router.register('hotels',HotelViewset,basename='hotels')
+router.register('users',UserViewset,basename='users')
 
 urlpatterns = [
     path('',include(router.urls)),

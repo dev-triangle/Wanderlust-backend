@@ -1,6 +1,7 @@
 from dataclasses import fields
+from pyexpat import model
 from rest_framework import serializers
-from .models import Place,User,Trending,Stay,UserDetail,Hotel
+from .models import Place,User,Trending,Stay,UserDetail,Hotel,User
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken,TokenError
 
@@ -34,11 +35,11 @@ class HotelSerializer(serializers.ModelSerializer):
     class Meta:
         model=Hotel
         fields='__all__'
-        
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model=User
-        fields=['id','username']
+        fields=['id','username','email']
 
 class PlaceSerializer(serializers.ModelSerializer):
     place_image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)

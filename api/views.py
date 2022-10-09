@@ -24,10 +24,14 @@ class StayView(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.RetrieveMode
     serializer_class=StaySerializer
     queryset=Stay.objects.all()
 
+class UserViewset(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin):
+    serializer_class=UserSerializer
+    queryset=User.objects.all()
+    
 class HotelViewset(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin):
     serializer_class=HotelSerializer
     queryset=Hotel.objects.all()
-    
+
 class UserDetailViewset(viewsets.GenericViewSet,mixins.DestroyModelMixin,mixins.UpdateModelMixin,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.ListModelMixin):
     permission_classes=[IsAuthenticatedOrReadOnly]
     serializer_class=UserDetailSerializer
