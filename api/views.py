@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics,mixins,viewsets,status
-from .models import (Place,User,Trending,Stay)
-from .serializers import (PlaceSerializer,UserSerializer,RegisterSerializer,TrendingSerializer,StaySerializer)
+from .models import (Place,User,Trending,Stay,UserDetail,Hotel)
+from .serializers import (PlaceSerializer,UserSerializer,RegisterSerializer,TrendingSerializer,StaySerializer,
+                        UserDetailSerializer,HotelSerializer)
 from rest_framework_simplejwt.tokens import RefreshToken,AccessToken
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
@@ -22,7 +23,16 @@ class TrendingView(viewsets.GenericViewSet,mixins.ListModelMixin):
 class StayView(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.RetrieveModelMixin):
     serializer_class=StaySerializer
     queryset=Stay.objects.all()
+
+class HotelViewset(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin):
+    serializer_class=HotelSerializer
+    queryset=Hotel.objects.all()
     
+class UserDetailViewset(viewsets.GenericViewSet,mixins.DestroyModelMixin,mixins.UpdateModelMixin,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.ListModelMixin):
+    permission_classes=[IsAuthenticatedOrReadOnly]
+    serializer_class=UserDetailSerializer
+    queryset=UserDetail.objects.all()
+
 class BlacklistTokenView(APIView):
     permission_classes=[IsAuthenticated]
     def post(self,request):

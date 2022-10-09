@@ -1,8 +1,8 @@
 from distutils.command.upload import upload
 from email.policy import default
+from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import (AbstractBaseUser,BaseUserManager,PermissionsMixin)
-
 # Create your models here.
 class UserManager(BaseUserManager):
     def create_user(self,username,email,password=None):
@@ -45,7 +45,13 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     def tokens(self):
         return ''
-
+class UserDetail(models.Model):
+    user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
+    actual_name=models.CharField(max_length=200,blank=True,null=True)
+    phno=models.CharField(max_length=10,blank=True,null=True)
+    user_image=models.ImageField(upload_to='user_images',blank=True,null=True)
+    def __str__(self):
+        return(self.actual_name)
 
 class Place(models.Model):
     place_name=models.CharField(max_length=100)
@@ -55,6 +61,16 @@ class Place(models.Model):
 
     def __str__(self):
         return (self.place_name)
+
+class Hotel(models.Model):
+    place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
+    hotel_name=models.CharField(max_length=200)
+    near_point=models.CharField(max_length=300)
+    hotel_image=models.ImageField(upload_to='hotel_images',blank=True,null=True)
+    famous_foods=models.CharField(max_length=500)
+
+    def __str__(self):
+        return(self.hotel_name)
 
 class Trending(models.Model):
     place_name=models.CharField(max_length=100)
