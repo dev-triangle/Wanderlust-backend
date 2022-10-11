@@ -3,7 +3,7 @@ from django.urls import path,include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from .views import (BlacklistTokenView,LoggedInUserView,RegisterView,TrendingView,PlaceViewSet,
-                    StayView,UserDetailViewset,HotelViewset,UserViewset,FlightDetailViewset,ReviewViewset)
+                    StayView,UserDetailViewset,HotelViewset,UserViewset,FlightDetailViewset,ReviewViewset,TrainDetailViewset)
 router=DefaultRouter()
 router.register('places',PlaceViewSet, basename='places')
 router.register('register',RegisterView,basename='register')
@@ -14,7 +14,7 @@ router.register('hotels',HotelViewset,basename='hotels')
 router.register('users',UserViewset,basename='users')
 router.register('flights',FlightDetailViewset,basename='flights')
 router.register('reviews',ReviewViewset,basename='reviews')
-
+router.register('trains',TrainDetailViewset,basename='trains')
 urlpatterns = [
     path('',include(router.urls)),
     path('api/token/',TokenObtainPairView.as_view(),name="token_obtain"),

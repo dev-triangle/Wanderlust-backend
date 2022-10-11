@@ -1,6 +1,7 @@
 from dataclasses import fields
 from pyexpat import model
 from rest_framework import serializers
+from .models import Place,User,Trending,Stay,UserDetail,Hotel,User,Flight,Train
 from .models import Place,User,Trending,Stay,UserDetail,Hotel,User,Flight,Review
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken,TokenError
@@ -67,4 +68,9 @@ class StaySerializer(serializers.ModelSerializer):
 class FlightSerializer(serializers.ModelSerializer):
     class Meta:
         model=Flight
+        fields='__all__'
+
+class TrainSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Train
         fields='__all__'
