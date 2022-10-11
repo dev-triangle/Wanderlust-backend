@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics,mixins,viewsets,status
-from .models import (Place,User,Trending,Stay,UserDetail,Hotel,Review)
-from .serializers import (PlaceSerializer,UserSerializer,RegisterSerializer,TrendingSerializer,StaySerializer,
+from .models import (Place,User,Trending,Stay,UserDetail,Hotel,Flight,Review)
+from .serializers import (PlaceSerializer,UserSerializer,RegisterSerializer,TrendingSerializer,StaySerializer,FlightSerializer,
                         UserDetailSerializer,HotelSerializer,ReviewSerializer)
 from rest_framework_simplejwt.tokens import RefreshToken,AccessToken
 from rest_framework.views import APIView
@@ -41,6 +41,10 @@ class UserDetailViewset(viewsets.GenericViewSet,mixins.DestroyModelMixin,mixins.
     permission_classes=[IsAuthenticatedOrReadOnly]
     serializer_class=UserDetailSerializer
     queryset=UserDetail.objects.all()
+
+class FlightDetailViewset(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.RetrieveModelMixin):
+    serializer_class=FlightSerializer
+    queryset=Flight.objects.all()
 
 class BlacklistTokenView(APIView):
     permission_classes=[IsAuthenticated]
