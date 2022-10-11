@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics,mixins,viewsets,status
-from .models import (Place,User,Trending,Stay,UserDetail,Hotel,Flight)
+from .models import (Place,User,Trending,Stay,UserDetail,Hotel,Flight,)
 from .serializers import (PlaceSerializer,UserSerializer,RegisterSerializer,TrendingSerializer,StaySerializer,FlightSerializer,
                         UserDetailSerializer,HotelSerializer)
 from rest_framework_simplejwt.tokens import RefreshToken,AccessToken
