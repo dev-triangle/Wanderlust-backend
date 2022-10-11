@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics,mixins,viewsets,status
-from .models import (Place,User,Trending,Stay,UserDetail,Hotel)
+from .models import (Place,User,Trending,Stay,UserDetail,Hotel,Review)
 from .serializers import (PlaceSerializer,UserSerializer,RegisterSerializer,TrendingSerializer,StaySerializer,
-                        UserDetailSerializer,HotelSerializer)
+                        UserDetailSerializer,HotelSerializer,ReviewSerializer)
 from rest_framework_simplejwt.tokens import RefreshToken,AccessToken
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
@@ -23,6 +23,11 @@ class TrendingView(viewsets.GenericViewSet,mixins.ListModelMixin):
 class StayView(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.RetrieveModelMixin):
     serializer_class=StaySerializer
     queryset=Stay.objects.all()
+
+class ReviewViewset(viewsets.GenericViewSet,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.ListModelMixin):
+    permission_classes=[IsAuthenticatedOrReadOnly]
+    serializer_class=ReviewSerializer
+    queryset=Review.objects.all()
 
 class UserViewset(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin):
     serializer_class=UserSerializer
