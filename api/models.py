@@ -63,13 +63,13 @@ class Place(models.Model):
         return (self.place_name)
 
 class Travel(models.Model):
-    place_foreign=models.ForeignKey(max_length=100)
+    place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
     vehicle_name=models.CharField(max_length=100)
     passenger_max=models.IntegerField()
-    place_image=models.ImageField(upload_to='place_images',blank=True,null=True)
+    place_image=models.ImageField(upload_to='vehicle_images',blank=True,null=True)
 
     def __str__(self):
-        return (self.place_name)
+        return (self.vehicle_name)
 
 class Hotel(models.Model):
     place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)

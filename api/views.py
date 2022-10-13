@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics,mixins,viewsets,status
-from .models import (Place,User,Trending,Stay,UserDetail,Hotel,Flight,Review,Train)
+from .models import (Place,User,Trending,Stay,UserDetail,Hotel,Flight,Review,Train,Travel)
 from .serializers import (PlaceSerializer,UserSerializer,RegisterSerializer,TrendingSerializer,StaySerializer,FlightSerializer,
-                        UserDetailSerializer,HotelSerializer,ReviewSerializer,TrainSerializer)
+                        UserDetailSerializer,HotelSerializer,ReviewSerializer,TrainSerializer,TravelSerializer)
 from rest_framework_simplejwt.tokens import RefreshToken,AccessToken
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
@@ -11,7 +11,7 @@ from rest_framework.response import Response
 class PlaceViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin):
     queryset=Place.objects.all()
     serializer_class=PlaceSerializer
-
+ 
 class RegisterView(viewsets.GenericViewSet,mixins.CreateModelMixin):
     serializer_class=RegisterSerializer
     queryset=User.objects.all()
@@ -49,6 +49,10 @@ class FlightDetailViewset(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.R
 class TrainDetailViewset(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.RetrieveModelMixin):
     serializer_class=TrainSerializer
     queryset=Train.objects.all()
+
+class TravelDetailViewset(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.RetrieveModelMixin):
+    serializer_class=TravelSerializer
+    queryset=Travel.objects.all()
 
 class BlacklistTokenView(APIView):
     permission_classes=[IsAuthenticated]
