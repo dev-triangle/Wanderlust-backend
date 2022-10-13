@@ -104,7 +104,7 @@ class Flight(models.Model):
     to_place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
     flight_name=models.CharField(max_length=100)
     cost=models.FloatField()
-
+    flight_time=models.DateTimeField()
     def __str__(self):
         return(self.flight_name)
 
