@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics,mixins,viewsets,status
-from .models import (Place,User,Trending,Stay,UserDetail,Hotel)
-from .serializers import (PlaceSerializer,UserSerializer,RegisterSerializer,TrendingSerializer,StaySerializer,
-                        UserDetailSerializer,HotelSerializer)
+from .models import (Place,User,Trending,Stay,UserDetail,Hotel,Flight,Review,Train)
+from .serializers import (PlaceSerializer,UserSerializer,RegisterSerializer,TrendingSerializer,StaySerializer,FlightSerializer,
+                        UserDetailSerializer,HotelSerializer,ReviewSerializer,TrainSerializer)
 from rest_framework_simplejwt.tokens import RefreshToken,AccessToken
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
@@ -24,6 +24,11 @@ class StayView(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.RetrieveMode
     serializer_class=StaySerializer
     queryset=Stay.objects.all()
 
+class ReviewViewset(viewsets.GenericViewSet,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.ListModelMixin):
+    permission_classes=[IsAuthenticatedOrReadOnly]
+    serializer_class=ReviewSerializer
+    queryset=Review.objects.all()
+
 class UserViewset(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin):
     serializer_class=UserSerializer
     queryset=User.objects.all()
@@ -36,6 +41,14 @@ class UserDetailViewset(viewsets.GenericViewSet,mixins.DestroyModelMixin,mixins.
     permission_classes=[IsAuthenticatedOrReadOnly]
     serializer_class=UserDetailSerializer
     queryset=UserDetail.objects.all()
+
+class FlightDetailViewset(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.RetrieveModelMixin):
+    serializer_class=FlightSerializer
+    queryset=Flight.objects.all()
+
+class TrainDetailViewset(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.RetrieveModelMixin):
+    serializer_class=TrainSerializer
+    queryset=Train.objects.all()
 
 class BlacklistTokenView(APIView):
     permission_classes=[IsAuthenticated]

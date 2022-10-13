@@ -81,6 +81,15 @@ class Hotel(models.Model):
     def __str__(self):
         return(self.hotel_name)
 
+class Review(models.Model):
+    place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
+    user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
+    desc=models.TextField(max_length=500)
+    rate=models.IntegerField()
+
+    def __int__(self):
+        return(self.place_foreign)
+
 class Trending(models.Model):
     place_name=models.CharField(max_length=100)
     place_image=models.ImageField(upload_to='trending_images',blank=True,null=True)
@@ -99,3 +108,19 @@ class Stay(models.Model):
 
     def __str__(self):
         return(self.stay_name)
+
+class Flight(models.Model):
+    to_place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
+    flight_name=models.CharField(max_length=100)
+    cost=models.FloatField()
+
+    def __str__(self):
+        return(self.flight_name)
+
+class Train(models.Model):
+    to_place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
+    train_name=models.CharField(max_length=100)
+    cost=models.FloatField()
+
+    def __str__(self):
+        return(self.train_name)
