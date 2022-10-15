@@ -12,7 +12,7 @@ class PlaceViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.List
     queryset=Place.objects.all()
     serializer_class=PlaceSerializer
  
-class RegisterView(viewsets.GenericViewSet,mixins.CreateModelMixin):
+class RegisterView(viewsets.GenericViewSet,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.ListModelMixin):
     serializer_class=RegisterSerializer
     queryset=User.objects.all()
 
