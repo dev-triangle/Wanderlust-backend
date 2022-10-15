@@ -1,6 +1,5 @@
 from distutils.command.upload import upload
 from email.policy import default
-from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import (AbstractBaseUser,BaseUserManager,PermissionsMixin)
 # Create your models here.
@@ -35,7 +34,6 @@ class User(AbstractBaseUser,PermissionsMixin):
     is_staff=models.BooleanField(default=False)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now_add=True)
-    
     USERNAME_FIELD='email'
     REQUIRED_FIELDS=['username']
 
@@ -45,6 +43,7 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     def tokens(self):
         return ''
+
 class UserDetail(models.Model):
     user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
     actual_name=models.CharField(max_length=200,blank=True,null=True)
@@ -113,7 +112,9 @@ class Flight(models.Model):
     to_place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
     flight_name=models.CharField(max_length=100)
     cost=models.FloatField()
-    flight_time=models.DateTimeField()
+    flight_time=models.TimeField()
+    next_date=models.DateField()
+
     def __str__(self):
         return(self.flight_name)
 
@@ -124,3 +125,15 @@ class Train(models.Model):
 
     def __str__(self):
         return(self.train_name)
+
+class Booking(models.Model):
+    user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
+    place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
+    stay_foreign=models.ForeignKey(Stay,on_delete=models.CASCADE)
+    travel_foreign=models.ForeignKey(Travel,on_delete=models.CASCADE)
+    booking_date=models.DateField()
+
+    def __int__(self):
+        return(self.id)
+
+

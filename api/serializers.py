@@ -1,13 +1,10 @@
-from dataclasses import fields
-from pyexpat import model
 from rest_framework import serializers
-from .models import Place,User,Trending,Stay,UserDetail,Hotel,User,Flight,Review,Train,Travel
+from .models import (Place,User,Trending,Stay,UserDetail,Hotel,User,Flight,Review,Train,Travel,Booking)
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken,TokenError
 
 class RegisterSerializer(serializers.ModelSerializer):
     password=serializers.CharField(max_length=68,min_length=6,write_only=True)
-
     permission_classes=[IsAuthenticated]
     class Meta:
         model=User
@@ -78,4 +75,9 @@ class TravelSerializer(serializers.ModelSerializer):
     place_image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
     class Meta:
         model=Travel
+        fields='__all__'
+
+class BookingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Booking
         fields='__all__'

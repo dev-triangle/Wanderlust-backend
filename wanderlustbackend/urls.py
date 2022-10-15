@@ -22,5 +22,8 @@ urlpatterns = [
      path('',include('api.urls')),
 
 ]
+admin.site.site_header  =  "Wanderlust Backend"  
+admin.site.site_title  =  "Custom bookstore admin site"
+admin.site.index_title  =  "Wanderlust Admin Panel"
 
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
