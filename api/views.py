@@ -54,7 +54,7 @@ class TravelDetailViewset(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.R
     serializer_class=TravelSerializer
     queryset=Travel.objects.all()
 
-class BookingViewset(viewsets.GenericViewSet,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.ListModelMixin):
+class BookingViewset(viewsets.GenericViewSet,mixins.UpdateModelMixin,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.ListModelMixin):
     permission_classes=[IsAuthenticated]
     serializer_class=BookingSerializer
     queryset=Booking.objects.all()
