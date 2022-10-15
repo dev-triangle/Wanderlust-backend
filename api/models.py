@@ -132,7 +132,8 @@ class Booking(models.Model):
     stay_foreign=models.ForeignKey(Stay,on_delete=models.CASCADE)
     travel_foreign=models.ForeignKey(Travel,on_delete=models.CASCADE)
     booking_date=models.DateField()
-
+    booking_status=models.BooleanField(default=False)
+    
     def __int__(self):
         return(self.id)
 
