@@ -1,8 +1,8 @@
 from rest_framework import generics,mixins,viewsets,status
-from .models import (Place,User,Trending,Stay,UserDetail,Hotel,Flight,Review,Train,Travel,Booking)
+from .models import (Place,User,Trending,Stay,UserDetail,Hotel,Flight,Review,Train,Travel,Booking,ThingsToDo)
 from .serializers import (PlaceSerializer,UserSerializer,RegisterSerializer,TrendingSerializer,
                         StaySerializer,FlightSerializer,BookingSerializer,
-                        UserDetailSerializer,HotelSerializer,ReviewSerializer,TrainSerializer,TravelSerializer)
+                        UserDetailSerializer,HotelSerializer,ReviewSerializer,TrainSerializer,TravelSerializer,ThingsToDoSerializer)
 from rest_framework_simplejwt.tokens import RefreshToken,AccessToken
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
@@ -58,6 +58,11 @@ class BookingViewset(viewsets.GenericViewSet,mixins.UpdateModelMixin,mixins.Crea
     permission_classes=[IsAuthenticated]
     serializer_class=BookingSerializer
     queryset=Booking.objects.all()
+
+class ThingsToDoViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin,mixins.CreateModelMixin,mixins.UpdateModelMixin,mixins.DestroyModelMixin):
+    permission_classes=[IsAuthenticatedOrReadOnly]
+    queryset=ThingsToDo.objects.all()
+    serializer_class=ThingsToDoSerializer
 
 class BlacklistTokenView(APIView):
     permission_classes=[IsAuthenticated]

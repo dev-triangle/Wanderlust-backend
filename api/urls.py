@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from .views import (BlacklistTokenView,LoggedInUserView,RegisterView,TrendingView,PlaceViewSet,
                     StayView,UserDetailViewset,HotelViewset,UserViewset,FlightDetailViewset,
-                    ReviewViewset,TrainDetailViewset,TravelDetailViewset,BookingViewset)
+                    ReviewViewset,TrainDetailViewset,TravelDetailViewset,BookingViewset,ThingsToDoViewSet)
 router=DefaultRouter()
 router.register('places',PlaceViewSet, basename='places')
 router.register('register',RegisterView,basename='register')
@@ -18,6 +18,7 @@ router.register('reviews',ReviewViewset,basename='reviews')
 router.register('trains',TrainDetailViewset,basename='trains')
 router.register('travels',TravelDetailViewset,basename='travels')
 router.register('bookings',BookingViewset,basename='bookings')
+router.register('things-to-do',ThingsToDoViewSet,basename='things-to-do')
 
 urlpatterns = [
     path('',include(router.urls)),

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import (Place,User,Trending,Stay,UserDetail,Hotel,User,Flight,Review,Train,Travel,Booking)
+from .models import (Place,User,Trending,Stay,UserDetail,Hotel,User,Flight,Review,Train,Travel,Booking,ThingsToDo)
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken,TokenError
 
@@ -80,4 +80,9 @@ class TravelSerializer(serializers.ModelSerializer):
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model=Booking
+        fields='__all__'
+
+class ThingsToDoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=ThingsToDo
         fields='__all__'
