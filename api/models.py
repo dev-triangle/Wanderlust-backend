@@ -57,7 +57,7 @@ class Place(models.Model):
     country=models.CharField(max_length=100)
     state=models.CharField(max_length=100)
     place_image=models.ImageField(upload_to='place_images',blank=True,null=True)
-
+    place_desc=models.TextField(max_length=1000)
     def __str__(self):
         return (self.place_name)
 
