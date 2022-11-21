@@ -138,3 +138,9 @@ class Booking(models.Model):
         return(self.id)
 
 
+
+class ThingsToDo(models.Model):
+    place_foreign= models.ForeignKey(Place,on_delete=models.CASCADE)
+    place_desc = models.TextField(max_length=500)
+    def __int__ (self):
+        return(self.id)
