@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import (Place,User,Trending,Stay,UserDetail,Hotel,User,Flight,Review,Train,Travel,Booking,ThingsToDo)
 from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.tokens import RefreshToken,TokenError
 
 class RegisterSerializer(serializers.ModelSerializer):
     password=serializers.CharField(max_length=68,min_length=6,write_only=True)

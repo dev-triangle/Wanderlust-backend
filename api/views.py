@@ -59,8 +59,7 @@ class BookingViewset(viewsets.GenericViewSet,mixins.UpdateModelMixin,mixins.Crea
     serializer_class=BookingSerializer
     queryset=Booking.objects.all()
 
-class ThingsToDoViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin,mixins.CreateModelMixin,mixins.UpdateModelMixin,mixins.DestroyModelMixin):
-    permission_classes=[IsAuthenticatedOrReadOnly]
+class ThingsToDoViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin):
     queryset=ThingsToDo.objects.all()
     serializer_class=ThingsToDoSerializer
 
