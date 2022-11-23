@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from .views import (BlacklistTokenView,LoggedInUserView,RegisterView,TrendingView,PlaceViewSet,
                     StayView,UserDetailViewset,HotelViewset,UserViewset,FlightDetailViewset,
-                    ReviewViewset,TrainDetailViewset,TravelDetailViewset,BookingViewset,ThingsToDoViewSet)
+                    ReviewViewset,TrainDetailViewset,TravelDetailViewset,BookingViewset,ThingsToDoViewSet,)
 router=DefaultRouter()
 router.register('places',PlaceViewSet, basename='places')
 router.register('register',RegisterView,basename='register')

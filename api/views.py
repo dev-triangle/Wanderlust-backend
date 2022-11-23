@@ -7,6 +7,7 @@ from rest_framework_simplejwt.tokens import RefreshToken,AccessToken
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
+from django.http import HttpResponse
 # Create your views here.
 class PlaceViewSet(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.ListModelMixin):
     queryset=Place.objects.all()
@@ -53,6 +54,7 @@ class TrainDetailViewset(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.Re
 class TravelDetailViewset(viewsets.GenericViewSet,mixins.ListModelMixin,mixins.RetrieveModelMixin):
     serializer_class=TravelSerializer
     queryset=Travel.objects.all()
+
 
 class BookingViewset(viewsets.GenericViewSet,mixins.UpdateModelMixin,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.ListModelMixin):
     permission_classes=[IsAuthenticated]
