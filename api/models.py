@@ -131,11 +131,17 @@ class Booking(models.Model):
     place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
     stay_foreign=models.ForeignKey(Stay,on_delete=models.CASCADE)
     travel_foreign=models.ForeignKey(Travel,on_delete=models.CASCADE)
-    booking_date=models.DateField()
-    booking_status=models.BooleanField(default=False)
-    
-    def __int__(self):
-        return(self.id)
+    date_to_book=models.DateField()
+    place_name=models.CharField(max_length=100)
+    stay_name=models.CharField(max_length=100)
+    travel_name=models.CharField(max_length=100)
+    place_image=models.ImageField(upload_to='book_place_image',blank=True,null=True)
+    stay_image=models.ImageField(upload_to='booked_stay_image',blank=True,null=True)
+    travel_image=models.ImageField(upload_to='booked_travel_image',blank=True,null='True')
+
+    def __str__(self):
+        return self.place_name
+
 
 class ThingsToDo(models.Model):
     place_foreign= models.ForeignKey(Place,on_delete=models.CASCADE)
