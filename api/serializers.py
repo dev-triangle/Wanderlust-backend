@@ -77,9 +77,6 @@ class TravelSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class BookingSerializer(serializers.ModelSerializer):
-    place_image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
-    stay_image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
-    travel_image=serializers.ImageField(max_length=None,allow_empty_file=False,use_url=True,required=False)
     class Meta:
         model=Booking
         fields='__all__'
