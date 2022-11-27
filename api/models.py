@@ -122,6 +122,8 @@ class Train(models.Model):
     to_place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
     train_name=models.CharField(max_length=100)
     cost=models.FloatField()
+    train_time=models.DateField()
+    next_date=models.DateField()
 
     def __str__(self):
         return(self.train_name)
