@@ -39,7 +39,6 @@ class HotelViewset(viewsets.GenericViewSet,mixins.RetrieveModelMixin,mixins.List
     queryset=Hotel.objects.all()
 
 class UserDetailViewset(viewsets.GenericViewSet,mixins.DestroyModelMixin,mixins.UpdateModelMixin,mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.ListModelMixin):
-    permission_classes=[IsAuthenticatedOrReadOnly]
     serializer_class=UserDetailSerializer
     queryset=UserDetail.objects.all()
 
