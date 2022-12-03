@@ -81,7 +81,6 @@ class Hotel(models.Model):
         return(self.hotel_name)
 
 class Review(models.Model):
-    place_foreign=models.ForeignKey(Place,on_delete=models.CASCADE)
     user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
     desc=models.TextField(max_length=500)
     rate=models.IntegerField()
