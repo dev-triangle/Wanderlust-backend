@@ -85,6 +85,7 @@ class Review(models.Model):
     user_foreign=models.ForeignKey(User,on_delete=models.CASCADE)
     desc=models.TextField(max_length=500)
     rate=models.IntegerField()
+    user_name=models.CharField(max_length=100)
 
     def __int__(self):
         return(self.place_foreign)
