@@ -5,7 +5,7 @@ from .serializers import (PlaceSerializer,UserSerializer,RegisterSerializer,Tren
                         UserDetailSerializer,HotelSerializer,ReviewSerializer,TrainSerializer,TravelSerializer,ThingsToDoSerializer)
 from rest_framework_simplejwt.tokens import RefreshToken,AccessToken
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated,IsAuthenticatedOrReadOnly,AllowAny
 from rest_framework.response import Response
 from django.http import HttpResponse
 # Create your views here.
@@ -73,6 +73,7 @@ class BlacklistTokenView(APIView):
             token.blacklist()
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
 class LoggedInUserView(APIView):
     permission_classes=[IsAuthenticated]
     def get(self, request):
